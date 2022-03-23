@@ -10,6 +10,9 @@ const Shop = () => {
         .then(data => setProducts(data))
     }, [])
    
+    const clickHandeler = (product)=>{
+        console.log(product)
+    } 
    
     return (
      
@@ -20,8 +23,13 @@ const Shop = () => {
           }
           
             </div>
-            <div>
-                <h2>Right Side</h2>
+            <div className='shop-right'>
+                <h2>Order Summary:</h2>
+                <p>Select Items:</p>
+                <p>Total Price:</p>
+                <p>Total Shiping Charge :</p>
+                <p>Tax :</p>
+                <p>Grand Total:</p>
             </div>
         </div>
     );
