@@ -1,10 +1,12 @@
 // import { click } from '@testing-library/user-event/dist/click';
 import React, { useEffect, useState } from 'react';
+import { addToDb } from '../../utilities/fakedb';
+import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css'
 const Shop = () => {
     const [products, setProducts] = useState([]);
-    const [cart, setCart] = useState([])
+    const [carts, setCart] = useState([])
     
     useEffect(()=>{
         fetch('products.json')
@@ -13,8 +15,9 @@ const Shop = () => {
     }, [])
    
     const clickHandeler = (product)=>{
-        const newCart = [...cart, product];
+        const newCart = [...carts, product];
         setCart(newCart);
+        addToDb(product.id)
     } 
    
     return (
@@ -27,12 +30,7 @@ const Shop = () => {
           
             </div>
             <div className='shop-right'>
-                <h2>Order Summary:</h2>
-                <p>Select Items:{cart.length}</p>
-                <p>Total Price:</p>
-                <p>Total Shiping Charge :</p>
-                <p>Tax :</p>
-                <p>Grand Total:</p>
+             <Cart carts={carts}></Cart>
             </div>
         </div>
     );
